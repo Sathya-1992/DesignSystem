@@ -47,7 +47,13 @@ export class AppComponent {
     for (const [property, value] of Object.entries(cssText)) {
       cssProp  += `${property}: ${value};`;
     }
-    this.styleSheet.insertRule(`${selectorText} { ${cssProp} }`, this.styleSheet.cssRules.length);
+    if(selectorText === "*"){
+      this.styleSheet.insertRule(`${selectorText} { ${cssProp} }`, 0);
+    }
+    else{
+      this.styleSheet.insertRule(`${selectorText} { ${cssProp} }`, this.styleSheet.cssRules.length);
+    }
+    
   }
 
   getStyleSheetProperty(path: any, propName: string) {
@@ -79,7 +85,7 @@ export class AppComponent {
             }
           }
           else {
-            if (stateName !== "default") {
+            if (propName === 'specific' && stateName !== "default") {
               this.generateStateComponent(path, stateName);
             }
           }
@@ -91,6 +97,7 @@ export class AppComponent {
   generateComponentList() {
     let compList = this.dataService.designSystem.componentList;
     let parentElement: HTMLElement;
+    let labelEle : HTMLElement;
     compList.forEach((list: any) => {
       this.divParentEle = this.renderer.createElement("div");
       this.divParentEle.classList.add("states"); 
@@ -102,15 +109,81 @@ export class AppComponent {
       }
   
       if(list.tagName === "select" && list.hasOwnProperty("options")){
-        list.options.forEach((optValue:string) =>{
-          let optionEle = document.createElement("option");
-          optionEle.setAttribute("value",optValue);
-          optionEle.textContent = optValue;
-          element.appendChild(optionEle);
-        })
+        this.generateSelectBoxComponenet(list,element);
       }
       else if(list.tagName === "input" && list.hasOwnProperty("autoSuggest") && list.hasOwnProperty("options")){
-        let dataInput = document.createElement("datalist");
+        this.generateAutosuggestBoxComp(list);
+      }
+      else if(list.tagName === "input" && list.hasOwnProperty("switchBox")){
+        labelEle = document.createElement("label");
+        labelEle.className = list.groupName;
+        labelEle.appendChild(element);
+        element = labelEle;
+      }
+      if (list.hasOwnProperty("groupName") && list.groupName!="switchGroup") {
+        element.className = list.groupName;
+      }
+      if (list.hasOwnProperty("textContent")) {
+        element.textContent = list.textContent;
+      }
+      this.divParentEle.appendChild(element);
+      
+      if (list.hasOwnProperty("specific")) {
+        this.getStyleSheetProperty(list, 'specific')
+      }
+      
+      if(list.tagName === "input" && (list.attributes.type === "radio"||list.attributes.type === "checkbox")){
+        parentElement = this.radioEle.nativeElement;
+      }
+      else if (list.tagName === "button") {
+        parentElement = this.buttonEle.nativeElement;
+      }
+      else if(list.tagName === "input" || list.tagName === "textarea" || list.tagName === "select") {
+        parentElement = this.inputEle.nativeElement
+      }
+      this.divParentEle.setAttribute("data-before",list.name);
+      this.renderer.appendChild(parentElement, this.divParentEle);
+
+    })
+  }
+
+  generateStateComponent(compDetails: any, stateName: string) {
+    let element = document.createElement(compDetails.tagName);
+    let labelEle : HTMLElement;
+    if (compDetails.hasOwnProperty("attributes") && Object.keys(compDetails.attributes).length) {
+      for (const [key, value] of Object.entries(compDetails.attributes)) {
+        element.setAttribute(key, value);
+      }
+      element.setAttribute(`${compDetails.tagName}${Object.values(compDetails.attributes)[0]}${stateName}`, true);
+    }
+    if (compDetails.hasOwnProperty("groupName")) {
+      if(compDetails.groupName === "switchGroup"){
+        labelEle = document.createElement("label");
+        labelEle.classList.add(`${compDetails.groupName}-default`, `${compDetails.groupName}-${stateName}`);
+        labelEle.appendChild(element);
+        element = labelEle;
+      }
+      else{
+        element.classList.add(`${compDetails.groupName}-default`, `${compDetails.groupName}-${stateName}`);
+      }
+    }
+    if (compDetails.hasOwnProperty("textContent")) {
+      element.textContent = compDetails.textContent;
+    }
+    this.divParentEle.appendChild(element);
+  }
+
+  generateSelectBoxComponenet(list:any,element:HTMLElement){
+    list.options.forEach((optValue:string) =>{
+      let optionEle = document.createElement("option");
+      optionEle.setAttribute("value",optValue);
+      optionEle.textContent = optValue;
+      element.appendChild(optionEle);
+    })
+  }
+
+  generateAutosuggestBoxComp(list:any){
+    let dataInput = document.createElement("datalist");
         dataInput.setAttribute("id",`${Object.values(list.attributes)[0]}`);
         list.options.forEach((optValue:string) =>{
           let optionEle = document.createElement("option");
@@ -119,45 +192,5 @@ export class AppComponent {
           dataInput.appendChild(optionEle);
         })
         this.divParentEle.appendChild(dataInput);
-      }
-      if (list.hasOwnProperty("groupName")) {
-        element.className = list.groupName;
-      }
-      if (list.hasOwnProperty("textContent")) {
-        element.textContent = list.textContent;
-      }
-      this.divParentEle.appendChild(element);
-      if (list.hasOwnProperty("specific")) {
-        this.getStyleSheetProperty(list, 'specific')
-      }
-      if (list.tagName === "input" || list.tagName === "textarea" || list.tagName === "select") {
-        parentElement = this.inputEle.nativeElement
-      }
-      else if (list.tagName === "button") {
-        parentElement = this.buttonEle.nativeElement;
-      }
-      if(list.tagName === "input" && (list.attributes.type === "radio"||list.attributes.type === "checkbox")){
-        parentElement = this.radioEle.nativeElement;
-      }
-      this.renderer.appendChild(parentElement, this.divParentEle);
-
-    })
-  }
-
-  generateStateComponent(compDetails: any, stateName: string) {
-    let element = document.createElement(compDetails.tagName);
-    if (compDetails.hasOwnProperty("attributes") && Object.keys(compDetails.attributes).length) {
-      for (const [key, value] of Object.entries(compDetails.attributes)) {
-        element.setAttribute(key, value);
-      }
-      element.setAttribute(`${compDetails.tagName}${Object.values(compDetails.attributes)[0]}${stateName}`, true);
-    }
-    if (compDetails.hasOwnProperty("groupName")) {
-      element.classList.add(`${compDetails.groupName}-default`, `${compDetails.groupName}-${stateName}`);
-    }
-    if (compDetails.hasOwnProperty("textContent")) {
-      element.textContent = compDetails.textContent;
-    }
-    this.divParentEle.appendChild(element);
   }
 }

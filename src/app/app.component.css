@@ -21,6 +21,12 @@
     grid-auto-flow: column;
     align-items: center;
     justify-content: space-around;
-    gap: 40px;
-    
+    gap: 40px;  
+    position: relative;
+}
+.states::before{
+    content: attr(data-before);
+    position: absolute;
+    left: -100px;
+    font-size: 12px;
 }

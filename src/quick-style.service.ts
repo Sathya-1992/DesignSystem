@@ -123,7 +123,7 @@ export class QuickStyleService {
             "padding": "var(--spacing-xl) var(--spacing-3xl)",
             "border-radius": "var(--radius-m)",
             "color": "#fff",
-            "border": "none",
+            "border": "var(--spacing-none)",
             "cursor":"pointer",
           },
           hover: {
@@ -138,11 +138,57 @@ export class QuickStyleService {
           disabled: {
 
           }
+        },
+        radioGroup: {
+          default: {
+            "height":"var(--dimension-s)",
+            "width":"var(--dimension-s)",
+            "appearance": "none",
+            "border": "var(--spacing-xs) solid black",
+            "cursor":"pointer",
+          },
+          hover: {
+            "border": "var(--spacing-s) solid var(--primary-bg-color)"
+          },
+          focus: {
+
+          },
+          checked : {
+
+          },
+          disabled: {
+
+          }
+        },
+        switchGroup: {
+          default: {
+            "display":"flex",
+            "width":"var(--dimension-m)",
+            "height":"1.5rem",
+            "border":"var(--spacing-xs) solid black",
+            "border-radius":"var(--radius-3xl)",
+            "background-color":"var(--tertiary-bg-color)",
+            "align-items" : "center",
+            "padding" : "var(--spacing-s)"
+          },
+          hover: {
+            
+          },
+          focus: {
+
+          },
+          checked : {
+
+          },
+          disabled: {
+
+          }
         }
       }
     },
     componentList: [
       {
+        name : "textBox",
         tagName: "input",
         attributes: {
           type: "text",
@@ -171,6 +217,7 @@ export class QuickStyleService {
         }
       },
       {
+        name:"numberBox",
         tagName: "input",
         attributes: {
           type: "number",
@@ -193,6 +240,7 @@ export class QuickStyleService {
         }
       },
       {
+        name:"emailBox",
         tagName: "input",
         attributes: {
           type: "email",
@@ -220,6 +268,7 @@ export class QuickStyleService {
         }
       },
       {
+        name:"password",
         tagName: "input",
         attributes: {
           type: "password",
@@ -242,6 +291,7 @@ export class QuickStyleService {
         }
       },
       {
+        name:"date",
         tagName: "input",
         attributes: {
           type: "date",
@@ -267,6 +317,7 @@ export class QuickStyleService {
         }
       },
       {
+        name:"textarea",
         tagName: "textarea",
         attributes: {
           placeholder: "textarea"
@@ -293,6 +344,7 @@ export class QuickStyleService {
         }
       },
       {
+        name : "primary-btn",
         tagName: "button",
         attributes: {
           value: "primary"
@@ -318,6 +370,7 @@ export class QuickStyleService {
         }
       },
       {
+        name :"secondary-btn",
         tagName: "button",
         attributes: {
           value: "secondary"
@@ -345,6 +398,7 @@ export class QuickStyleService {
         }
       },
       {
+        name:"success-btn",
         tagName: "button",
         attributes: {
           value: "success"
@@ -372,6 +426,7 @@ export class QuickStyleService {
         }
       },
       {
+        name:"add-btn",
         tagName: "button",
         attributes: {
           value: "add"
@@ -405,6 +460,7 @@ export class QuickStyleService {
         }
       },
       {
+        name:"selectBox",
         tagName: "select",
         attributes: {
           name: "colors"
@@ -427,6 +483,7 @@ export class QuickStyleService {
         }
       },
       {
+        name:"autoSuggest",
         tagName: "input",
         attributes: {
           list: "colors"
@@ -454,26 +511,23 @@ export class QuickStyleService {
         }
       },
       {
+        name:"radio-btn",
         tagName: "input",
         attributes: {
           type: "radio",
           name: "gender",
           id: "man"
         },
+        groupName: "radioGroup",
         labelName: "man",
         specific: {
           default: {
-            "height":"var(--dimension-s)",
-            "width":"var(--dimension-s)",
-            "appearance": "none",
-            "border": "var(--spacing-xs) solid black",
             "border-radius": "var(--radius-rounded)",
             "background-image": "var(--radio-img)",
-            "background-size": "cover", 
-            "cursor":"pointer",
+            "background-size": "cover"
           },
           hover: {
-            "border": "var(--spacing-s) solid var(--primary-bg-color)",
+            
           },
           checked: {
             "background-image": "var(--radio-checked-img)",
@@ -487,28 +541,58 @@ export class QuickStyleService {
         }
       },
       {
+        name :"checkBox",
         tagName: "input",
         attributes: {
           type: "checkbox",
           name: "colors",
           id: "red"
         },
+        groupName: "radioGroup",
         labelName: "red",
         specific: {
           default: {
-            "height":"var(--dimension-s)",
-            "width":"var(--dimension-s)",
-            "appearance": "none",
-            "border": "var(--spacing-xs) solid black",
             "background-size": "cover", 
-            "cursor":"pointer",
             "border-radius":"var(--radius-m)"
           },
           hover: {
-            "border": "var(--spacing-s) solid var(--primary-bg-color)",
+            
           },
           checked: {
             "background-image":"var(--checkbox-img)"
+          },
+          focus:{
+
+          },
+          disabled: {
+            "opacity":0.6
+          }
+        }
+      },
+      {
+        name:"switchBox",
+        tagName: "input",
+        attributes: {
+          class:"slider",
+          type : "checkbox"
+        },
+        switchBox :true,
+        groupName : "switchGroup",
+        specific: {
+          default: {
+            "appearance" : "none",
+            "height" :"var(--dimension-xs)",
+            "width" : "var(--dimension-xs)",
+            "background-color":"var(--danger-bg-color)",
+            "transition" :"0.4s",
+            "border-radius" : "var(--radius-rounded)"  
+          },
+          hover: {
+
+          },
+          checked: {
+            "background-color" : "var(--success-bg-color)",
+            "transform" : "translateX(22px)"
           },
           focus:{
 
