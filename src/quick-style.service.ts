@@ -15,14 +15,23 @@ export class QuickStyleService {
       "variable": {
         "background-color" : {
           "--primary-bg-color" : "#007bff",
+          "--primary-fg-color" : "#ffffff",
           "--secondary-bg-color" : "#6c757d",
+          "--secondary-fg-color" : "#1E40AF",
           "--tertiary-bg-color" : "#F4F4F4",
+          "--tertiary-fg-color" : "000000",
           "--success-bg-color" : "#28a745",
+          "--success-fg-color" : "#ffffff",
           "--warning-bg-color" : "#6200EE",
+          "--warning-fg-color" : "#ffffff",
           "--danger-bg-color" : "#dc3545",
+          "--danger-fg-color" : "#ffffff",
           "--info-bg-color" : "#17a2b8",
+          "--info-fg-color" : "#ffffff",
           "--light-bg-color" : "#f8f9fa",
-          "--dark-bg-color" : "#343a40"
+          "--light-fg-color" : "#000000",
+          "--dark-bg-color" : "#343a40",
+          "--dark-fg-color" : "#ffffff"
         },
         "radius" : {
           "--radius-none" : "0px",
@@ -122,7 +131,6 @@ export class QuickStyleService {
           default: {
             "padding": "var(--spacing-xl) var(--spacing-3xl)",
             "border-radius": "var(--radius-m)",
-            "color": "#fff",
             "border": "var(--spacing-none)",
             "cursor":"pointer",
           },
@@ -354,6 +362,7 @@ export class QuickStyleService {
         specific: {
           default: {
             "background-color": "var(--primary-bg-color)",
+            "color" : "var(--primary-fg-color)"
           },
           hover: {
             "background-color": "#1D4ED8",
@@ -380,7 +389,7 @@ export class QuickStyleService {
         specific: {
           default: {
             "background-color": "var(--secondary-bg-color)",
-            "color": "#1E40AF",
+            "color": "var(--secondary-fg-color)",
             "border-radius": "var(--radius-3xl)"
           },
           hover: {
@@ -408,6 +417,7 @@ export class QuickStyleService {
         specific: {
           default: {
             "background-color": "var(--success-bg-color)",
+            "color" : "var(--success-fg-color)"
           },
           hover: {
             "background-color": "#218838",
@@ -438,6 +448,7 @@ export class QuickStyleService {
             "height": "var(--dimension-m)",
             "width": "var(--dimension-m)",
             "background-color": "var(--warning-bg-color)",
+            "color" : "var(--warning-fg-color)",
             "border-radius": "var(--radius-rounded)",
             "padding": "0px",
             "font-size": "var(--font-size-m)",
