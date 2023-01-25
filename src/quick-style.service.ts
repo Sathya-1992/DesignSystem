@@ -73,12 +73,30 @@ export class QuickStyleService {
           "--dimension-9xl" : "15rem"
         },
         "typography": { 
+          "--font-family-sans" : "ui-sans-serif, sans-serif,Segoe UI Emoji, Segoe UI Symbol",
+          "--font-family-sherif" : "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
+          "--font-family-mono" : "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+          "--font-weight-thin" : "100",
+          "--font-weight-light" : "300",
+          "--font-weight-medium" : "500",
+          "--font-weight-bold" : "700",
+          "--font-weight-xbold" : "900",
           "--font-size-xs" : "0.75rem",
           "--font-size-s" : "1rem",
           "--font-size-m" : "1.5rem",
           "--font-size-l" : "2rem",
           "--font-size-xl" : "3rem",
           "--font-size-2xl" : "5rem"
+        },
+        "box-shadow": {
+          "--box-shadow-none" : "none",
+          "--box-shadow1" : "0 0 0 2px rgb(5 145 255 / 20%)",
+          "--box-shadow2" : "0 2px 5px 1px rgb(64 60 67 / 16%)",
+          "--box-shadow3" : "0 2px 8px 1px rgb(64 60 67 / 24%)",
+          "--box-shadow4" : "0 0 0 3px #93C5FD",
+          "--box-shadow5" : "0 0 0 3px rgb(72 180 97 / 50%)",
+          "--box-shadow6" : "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
+          "--box-shadow7" : "0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)"
         },
         "image": {
           "--radio-img" : "url(http://cdn.onlinewebfonts.com/svg/img_504781.png)",
@@ -120,7 +138,7 @@ export class QuickStyleService {
           },
           focus: {
             "border": "var(--spacing-xs) solid var(--primary-bg-color)",
-            "box-shadow": "0 0 0 2px rgb(5 145 255 / 20%)"
+            "box-shadow": "var(--box-shadow1)"
           },
           disabled: {
             "background-color": "#ccc",
@@ -206,16 +224,16 @@ export class QuickStyleService {
         specific: {  
           default: {
             "border": "var(--spacing-xs) solid transparent",
-            "box-shadow": "0 2px 5px 1px rgb(64 60 67 / 16%)",
+            "box-shadow": "var(--box-shadow2)",
             "border-radius": "var(--radius-3xl)"
           },
           hover: {
-            "box-shadow": "0 2px 8px 1px rgb(64 60 67 / 24%)",
+            "box-shadow": "var(--box-shadow3)",
             "border": "var(--spacing-xs) solid rgba(223,225,229,0)"
           },
           focus: {
             "width": "300px",
-            "box-shadow": "0 2px 8px 1px rgb(64 60 67 / 24%)",
+            "box-shadow": "var(--box-shadow3)",
             "border": "var(--spacing-xs) solid rgba(223,225,229,0)",
             "transition": "0.3s width"
           },
@@ -259,16 +277,22 @@ export class QuickStyleService {
           default: {
             "border": "var(--spacing-none)",
             "border-bottom": "var(--spacing-xs) solid #8D8D8D",
-            "background-color": "var(--tertiary-bg-color)",
-            "border-radius": "var(--radius-none)"
+            "background-color": "var(--tertiary-bg-color)",   
+            "border-radius" : "var(--radius-none)", 
+            "border-top-left-radius": "var(--radius-s)",
+            "border-top-right-radius": "var(--radius-s)",
+            
           },
           hover: {
             "border": "var(--spacing-none)",
+            "background-color": "#EBECF0",
             "border-bottom": "var(--spacing-xs) solid #8D8D8D",
           },
           focus: {
-            "outline": "var(--spacing-s) solid var(--primary-bg-color)",
-            "border": "var(--spacing-none)"
+            "box-shadow" : "var(--box-shadow-none)",
+            "border": "var(--spacing-none)",
+            "border-bottom": "var(--spacing-s) solid var(--warning-bg-color)",
+            "transition" : "border-color 0.2s linear"
           },
           disabled: {
 
@@ -316,7 +340,7 @@ export class QuickStyleService {
           },
           focus: {
             "background-color": "#fff",
-            "box-shadow": "none",
+            "box-shadow": "var(--box-shadow-none)",
 
           },
           disabled: {
@@ -344,7 +368,7 @@ export class QuickStyleService {
           focus: {
             "background-color": "#FFFFFF",
             "border": "2px solid var(--primary-bg-color)",
-            "box-shadow": "none"
+            "box-shadow": "var(--box-shadow-none)"
           },
           disabled: {
 
@@ -368,7 +392,7 @@ export class QuickStyleService {
             "background-color": "#1D4ED8",
           },
           focus: {
-            "box-shadow": "0 0 0 3px #93C5FD"
+            "box-shadow": "var(--box-shadow4)"
           },
           active: {
             "background-color": "#1E40AF"
@@ -396,7 +420,7 @@ export class QuickStyleService {
             "background-color": "#DBEAFE",
           },
           focus: {
-            "box-shadow": "0 0 0 3px #93C5FD"
+            "box-shadow": "var(--box-shadow4)"
           },
           active: {
             "background-color": "#EEF2FF"
@@ -424,7 +448,7 @@ export class QuickStyleService {
             "border": "1px solid #1E7E34"
           },
           focus: {
-            "box-shadow": "0 0 0 3px rgb(72 180 97 / 50%)"
+            "box-shadow": "var(--box-shadow5)"
           },
           active: {
             "background-color": "#1E7E34",
@@ -457,13 +481,13 @@ export class QuickStyleService {
             "justify-content": "center"
           },
           hover: {
-            "box-shadow": "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)"
+            "box-shadow": "var(--box-shadow6)"
           },
           focus: {
-            "box-shadow": "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)"
+            "box-shadow": "var(--box-shadow6)"
           },
           active: {
-            "box-shadow": "0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)"
+            "box-shadow": "var(--box-shadow7)"
           },
           disabled: {
             "opacity": 0.6
@@ -514,7 +538,7 @@ export class QuickStyleService {
           focus: {
             "background-color": "#FFFFFF",
             "border": "var(--spacing-s) solid var(--primary-bg-color)",
-            "box-shadow": "none"
+            "box-shadow": "var(--box-shadow-none)"
           },
           disabled: {
 
