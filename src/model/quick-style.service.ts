@@ -151,9 +151,11 @@ export class QuickStyleService {
             "border-radius": "var(--radius-m)",
             "border": "var(--spacing-none)",
             "cursor":"pointer",
+            "background-color": "var(--primary-bg-color)",
+            "color" : "var(--primary-fg-color)"
           },
           hover: {
-
+            "border": "2px solid rgb(0 0 0 / 14%)"
           },
           focus: {
 
@@ -280,13 +282,12 @@ export class QuickStyleService {
             "background-color": "var(--tertiary-bg-color)",   
             "border-radius" : "var(--radius-none)", 
             "border-top-left-radius": "var(--radius-s)",
-            "border-top-right-radius": "var(--radius-s)",
-            
+            "border-top-right-radius": "var(--radius-s)"   
           },
           hover: {
             "border": "var(--spacing-none)",
             "background-color": "#EBECF0",
-            "border-bottom": "var(--spacing-xs) solid #8D8D8D",
+            "border-bottom": "var(--spacing-xs) solid #8D8D8D"
           },
           focus: {
             "box-shadow" : "var(--box-shadow-none)",
