@@ -102,6 +102,13 @@ export class QuickStyleService {
           "--radio-img" : "url(http://cdn.onlinewebfonts.com/svg/img_504781.png)",
           "--radio-checked-img": "url(https://www.svgrepo.com/download/88683/woman.svg)",
           "--checkbox-img" : "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3uRfFFTdwtJBBRDuybKlX1oyQXQjCPa3RVw&usqp=CAU)"
+        },
+        "transition": {
+          "--transition-1" : "0.1s",
+          "--transition-2" : "0.2s",
+          "--transition-3" : "0.3s",
+          "--transition-4" : "0.4s",
+          "--transition-5" : "0.5s"
         }
         
       },
@@ -237,7 +244,7 @@ export class QuickStyleService {
             "width": "300px",
             "box-shadow": "var(--box-shadow3)",
             "border": "var(--spacing-xs) solid rgba(223,225,229,0)",
-            "transition": "0.3s width"
+            "transition": "var(--transition-3) width"
           },
           disabled: {
 
@@ -293,7 +300,7 @@ export class QuickStyleService {
             "box-shadow" : "var(--box-shadow-none)",
             "border": "var(--spacing-none)",
             "border-bottom": "var(--spacing-s) solid var(--warning-bg-color)",
-            "transition" : "border-color 0.2s linear"
+            "transition" : "border-color var(--transition-2) linear"
           },
           disabled: {
 
@@ -620,7 +627,7 @@ export class QuickStyleService {
             "height" :"var(--dimension-xs)",
             "width" : "var(--dimension-xs)",
             "background-color":"var(--danger-bg-color)",
-            "transition" :"0.4s",
+            "transition" :"var(--transition-4)",
             "border-radius" : "var(--radius-rounded)"  
           },
           hover: {
