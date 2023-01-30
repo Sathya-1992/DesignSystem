@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { QuickStyleService } from 'src/quick-style.service';
+import { QuickStyleService } from 'src/model/quick-style.service';
 import { AfterViewInit, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
@@ -20,15 +20,15 @@ export class AppComponent {
 
   ngOnInit(): void {
     let resetCss = this.dataService.designSystem.styles.all['default'];
-    let variableCss= this.dataService.designSystem.styles[':root'];
-    let rootVariable=this.dataService.designSystem.styles.variable;
+    let variableCss = this.dataService.designSystem.styles[':root'];
+    let rootVariable = this.dataService.designSystem.styles.variable;
     let rootObj;
-    for(const property in rootVariable){
-      rootObj = Object.assign(variableCss,rootVariable[property]);
+    for (const property in rootVariable) {
+      rootObj = Object.assign(variableCss, rootVariable[property]);
     }
     let groupCss: any = this.dataService.designSystem.styles.group;
     this.generateStylesheetProperty('*', resetCss);
-    this.generateStylesheetProperty(":root",rootObj);
+    this.generateStylesheetProperty(":root", rootObj);
     let groupNames: string[] = Object.keys(groupCss);
 
     if (groupNames.length) {
@@ -45,15 +45,15 @@ export class AppComponent {
   generateStylesheetProperty(selectorText: string, cssText: any) {
     let cssProp = '';
     for (const [property, value] of Object.entries(cssText)) {
-      cssProp  += `${property}: ${value};`;
+      cssProp += `${property}: ${value};`;
     }
-    if(selectorText === "*"){
+    if (selectorText === "*") {
       this.styleSheet.insertRule(`${selectorText} { ${cssProp} }`, 0);
     }
-    else{
+    else {
       this.styleSheet.insertRule(`${selectorText} { ${cssProp} }`, this.styleSheet.cssRules.length);
     }
-    
+
   }
 
   getStyleSheetProperty(path: any, propName: string) {
@@ -97,51 +97,51 @@ export class AppComponent {
   generateComponentList() {
     let compList = this.dataService.designSystem.componentList;
     let parentElement: HTMLElement;
-    let labelEle : HTMLElement;
+    let labelEle: HTMLElement;
     compList.forEach((list: any) => {
       this.divParentEle = this.renderer.createElement("div");
-      this.divParentEle.classList.add("states"); 
+      this.divParentEle.classList.add("states");
       let element = document.createElement(list.tagName);
       if (list.hasOwnProperty("attributes") && Object.keys(list.attributes).length) {
         for (const [key, value] of Object.entries(list.attributes)) {
           element.setAttribute(key, value);
         }
       }
-  
-      if(list.tagName === "select" && list.hasOwnProperty("options")){
-        this.generateSelectBoxComponenet(list,element);
+
+      if (list.tagName === "select" && list.hasOwnProperty("options")) {
+        this.generateSelectBoxComponenet(list, element);
       }
-      else if(list.tagName === "input" && list.hasOwnProperty("autoSuggest") && list.hasOwnProperty("options")){
+      else if (list.tagName === "input" && list.hasOwnProperty("autoSuggest") && list.hasOwnProperty("options")) {
         this.generateAutosuggestBoxComp(list);
       }
-      else if(list.tagName === "input" && list.hasOwnProperty("switchBox")){
+      else if (list.tagName === "input" && list.hasOwnProperty("switchBox")) {
         labelEle = document.createElement("label");
         labelEle.className = list.groupName;
         labelEle.appendChild(element);
         element = labelEle;
       }
-      if (list.hasOwnProperty("groupName") && list.groupName!="switchGroup") {
+      if (list.hasOwnProperty("groupName") && list.groupName != "switchGroup") {
         element.className = list.groupName;
       }
       if (list.hasOwnProperty("textContent")) {
         element.textContent = list.textContent;
       }
       this.divParentEle.appendChild(element);
-      
+
       if (list.hasOwnProperty("specific")) {
         this.getStyleSheetProperty(list, 'specific')
       }
-      
-      if(list.tagName === "input" && (list.attributes.type === "radio"||list.attributes.type === "checkbox")){
+
+      if (list.tagName === "input" && (list.attributes.type === "radio" || list.attributes.type === "checkbox")) {
         parentElement = this.radioEle.nativeElement;
       }
       else if (list.tagName === "button") {
         parentElement = this.buttonEle.nativeElement;
       }
-      else if(list.tagName === "input" || list.tagName === "textarea" || list.tagName === "select") {
+      else if (list.tagName === "input" || list.tagName === "textarea" || list.tagName === "select") {
         parentElement = this.inputEle.nativeElement
       }
-      this.divParentEle.setAttribute("data-before",list.name);
+      this.divParentEle.setAttribute("data-before", list.name);
       this.renderer.appendChild(parentElement, this.divParentEle);
 
     })
@@ -149,7 +149,7 @@ export class AppComponent {
 
   generateStateComponent(compDetails: any, stateName: string) {
     let element = document.createElement(compDetails.tagName);
-    let labelEle : HTMLElement;
+    let labelEle: HTMLElement;
     if (compDetails.hasOwnProperty("attributes") && Object.keys(compDetails.attributes).length) {
       for (const [key, value] of Object.entries(compDetails.attributes)) {
         element.setAttribute(key, value);
@@ -157,13 +157,13 @@ export class AppComponent {
       element.setAttribute(`${compDetails.tagName}${Object.values(compDetails.attributes)[0]}${stateName}`, true);
     }
     if (compDetails.hasOwnProperty("groupName")) {
-      if(compDetails.groupName === "switchGroup"){
+      if (compDetails.groupName === "switchGroup") {
         labelEle = document.createElement("label");
         labelEle.classList.add(`${compDetails.groupName}-default`, `${compDetails.groupName}-${stateName}`);
         labelEle.appendChild(element);
         element = labelEle;
       }
-      else{
+      else {
         element.classList.add(`${compDetails.groupName}-default`, `${compDetails.groupName}-${stateName}`);
       }
     }
@@ -173,24 +173,24 @@ export class AppComponent {
     this.divParentEle.appendChild(element);
   }
 
-  generateSelectBoxComponenet(list:any,element:HTMLElement){
-    list.options.forEach((optValue:string) =>{
+  generateSelectBoxComponenet(list: any, element: HTMLElement) {
+    list.options.forEach((optValue: string) => {
       let optionEle = document.createElement("option");
-      optionEle.setAttribute("value",optValue);
+      optionEle.setAttribute("value", optValue);
       optionEle.textContent = optValue;
       element.appendChild(optionEle);
     })
   }
 
-  generateAutosuggestBoxComp(list:any){
+  generateAutosuggestBoxComp(list: any) {
     let dataInput = document.createElement("datalist");
-        dataInput.setAttribute("id",`${Object.values(list.attributes)[0]}`);
-        list.options.forEach((optValue:string) =>{
-          let optionEle = document.createElement("option");
-          optionEle.setAttribute("value",optValue);
-          optionEle.textContent = optValue;
-          dataInput.appendChild(optionEle);
-        })
-        this.divParentEle.appendChild(dataInput);
+    dataInput.setAttribute("id", `${Object.values(list.attributes)[0]}`);
+    list.options.forEach((optValue: string) => {
+      let optionEle = document.createElement("option");
+      optionEle.setAttribute("value", optValue);
+      optionEle.textContent = optValue;
+      dataInput.appendChild(optionEle);
+    })
+    this.divParentEle.appendChild(dataInput);
   }
 }
