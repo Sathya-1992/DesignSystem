@@ -43,6 +43,7 @@ export class AppComponent {
     this.generateComponentList();
   }
   generateStylesheetProperty(selectorText: string, cssText: any) {
+    console.log("----" ,cssText);
     let cssProp = '';
     for (const [property, value] of Object.entries(cssText)) {
       cssProp += `${property}: ${value};`;
@@ -97,7 +98,6 @@ export class AppComponent {
   generateComponentList() {
     let compList = this.dataService.designSystem.componentList;
     let parentElement: HTMLElement;
-    let labelEle: HTMLElement;
     compList.forEach((list: any) => {
       this.divParentEle = this.renderer.createElement("div");
       this.divParentEle.classList.add("states");
@@ -115,10 +115,15 @@ export class AppComponent {
         this.generateAutosuggestBoxComp(list);
       }
       else if (list.tagName === "input" && list.hasOwnProperty("switchBox")) {
-        labelEle = document.createElement("label");
+        let labelEle : HTMLElement = document.createElement("label");
         labelEle.className = list.groupName;
         labelEle.appendChild(element);
         element = labelEle;
+      }
+      else if (list.tagName === "input" && (list.attributes.type === "radio" || list.attributes.type === "checkbox") && list.hasOwnProperty("options")){
+        let divElement : HTMLElement = document.createElement("div");
+        let parent : HTMLElement = this.generateCheckboxComp(list,divElement);
+        this.divParentEle.appendChild(parent);
       }
       if (list.hasOwnProperty("groupName") && list.groupName != "switchGroup") {
         element.className = list.groupName;
@@ -126,7 +131,10 @@ export class AppComponent {
       if (list.hasOwnProperty("textContent")) {
         element.textContent = list.textContent;
       }
-      this.divParentEle.appendChild(element);
+      if (!(list.tagName === "input" && (list.attributes.type === "radio" || list.attributes.type === "checkbox") && list.hasOwnProperty("options"))){
+        this.divParentEle.appendChild(element);
+      }
+      
 
       if (list.hasOwnProperty("specific")) {
         this.getStyleSheetProperty(list, 'specific')
@@ -192,5 +200,37 @@ export class AppComponent {
       dataInput.appendChild(optionEle);
     })
     this.divParentEle.appendChild(dataInput);
+  }
+
+  generateCheckboxComp(list : any,divElement : HTMLElement){
+    if(list.hasOwnProperty("options") && Object.keys(list.options).length){
+      list.options.forEach((prop : any) => {
+        let divEle = this.renderer.createElement("div");
+        divEle.className = "flexAlign";
+        let inputEle : HTMLInputElement = document.createElement(list.tagName);
+        inputEle.id = prop.label;
+        inputEle.className = list.groupName;
+        if (list.hasOwnProperty("attributes") && Object.keys(list.attributes).length) {
+          for (const [key, value] of Object.entries(list.attributes)) {
+            inputEle.setAttribute(key, value as string);
+          }
+        }
+        divEle.appendChild(inputEle);
+        if(prop.hasOwnProperty("label")){
+          let labEle = document.createElement("label");
+          labEle.setAttribute("for",prop.label);
+          labEle.textContent = prop.label;
+          divEle.appendChild(labEle);
+        }
+        if(prop.hasOwnProperty("default") && Object.keys(prop.default).length){
+          this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]`,prop.default);
+        }
+        if(prop.hasOwnProperty("checked") && Object.keys(prop.checked).length){
+          this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]:checked`,prop.checked);
+        }
+        divElement.appendChild(divEle);
+      })
+    }
+    return divElement;
   }
 }

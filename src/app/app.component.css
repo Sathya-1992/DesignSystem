@@ -30,3 +30,9 @@
     left: -100px;
     font-size: 12px;
 }
+.flexAlign{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px;
+}

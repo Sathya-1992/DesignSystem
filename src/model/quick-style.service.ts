@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Attribute, Injectable } from '@angular/core';
 
 @Injectable({
@@ -13,112 +14,120 @@ export class QuickStyleService {
 
       },
       "variable": {
-        "background-color" : {
-          "--primary-bg-color" : "#007bff",
-          "--primary-fg-color" : "#ffffff",
-          "--secondary-bg-color" : "#6c757d",
-          "--secondary-fg-color" : "#1E40AF",
-          "--tertiary-bg-color" : "#F4F4F4",
-          "--tertiary-fg-color" : "000000",
-          "--success-bg-color" : "#28a745",
-          "--success-fg-color" : "#ffffff",
-          "--warning-bg-color" : "#6200EE",
-          "--warning-fg-color" : "#ffffff",
-          "--danger-bg-color" : "#dc3545",
-          "--danger-fg-color" : "#ffffff",
-          "--info-bg-color" : "#17a2b8",
-          "--info-fg-color" : "#ffffff",
-          "--light-bg-color" : "#f8f9fa",
-          "--light-fg-color" : "#000000",
-          "--dark-bg-color" : "#343a40",
-          "--dark-fg-color" : "#ffffff"
+        "background-color": {
+          "--primary-bg-color": "#007bff",
+          "--primary-fg-color": "#ffffff",
+          "--secondary-bg-color": "#6c757d",
+          "--secondary-fg-color": "#1E40AF",
+          "--tertiary-bg-color": "#F4F4F4",
+          "--tertiary-fg-color": "000000",
+          "--success-bg-color": "#28a745",
+          "--success-fg-color": "#ffffff",
+          "--warning-bg-color": "#6200EE",
+          "--warning-fg-color": "#ffffff",
+          "--danger-bg-color": "#dc3545",
+          "--danger-fg-color": "#ffffff",
+          "--info-bg-color": "#17a2b8",
+          "--info-fg-color": "#ffffff",
+          "--light-bg-color": "#f8f9fa",
+          "--light-fg-color": "#000000",
+          "--dark-bg-color": "#343a40",
+          "--dark-fg-color": "#ffffff",
+          "--disabled-bg-color": "#ccc"
         },
-        "radius" : {
-          "--radius-none" : "0px",
-          "--radius-xs" : "0.125rem",
-          "--radius-s" : "0.25rem",
-          "--radius-m" : "0.375rem",
-          "--radius-l" : "0.5rem",
-          "--radius-xl" : "0.75rem",
-          "--radius-2xl" : "1rem",
-          "--radius-3xl" : "1.5rem",
-          "--radius-rounded" : "50%"
+        "hover-color": {
+          "--primary-hov-color": "rgba(223,225,229,0)",
+          "--secondary-hov-color": '#8d8d8d',
+          "--tertiary-hov-color": "#ebecf0",
+          "--light-hov-color": "#DFE1E6",
+          "--light-foc-color": "#ffffff"
         },
-        "spacing":{
-          "spacing-none" : "0rem",
-          "--spacing-xs" : "1px",
-          "--spacing-s" : "0.125rem",
-          "--spacing-m" : "0.25rem",
-          "--spacing-l" : "0.375rem",
-          "--spacing-xl" :  "0.5rem",
-          "--spacing-2xl" : "0.75rem",
-          "--spacing-3xl" : '1rem',
-          "--spacing-4xl" : "1.5rem",
-          "--spacing-5xl" : "2rem"
+        "radius": {
+          "--radius-none": "0px",
+          "--radius-xs": "0.125rem",
+          "--radius-s": "0.25rem",
+          "--radius-m": "0.375rem",
+          "--radius-l": "0.5rem",
+          "--radius-xl": "0.75rem",
+          "--radius-2xl": "1rem",
+          "--radius-3xl": "1.5rem",
+          "--radius-rounded": "50%"
         },
-        "dimensions":{
+        "spacing": {
+          "spacing-none": "0rem",
+          "--spacing-xs": "1px",
+          "--spacing-s": "0.125rem",
+          "--spacing-m": "0.25rem",
+          "--spacing-l": "0.375rem",
+          "--spacing-xl": "0.5rem",
+          "--spacing-2xl": "0.75rem",
+          "--spacing-3xl": '1rem',
+          "--spacing-4xl": "1.5rem",
+          "--spacing-5xl": "2rem"
+        },
+        "dimensions": {
           "--dimension-none": "0rem",
-          "--dimension-xs" : "1rem",
-          "--dimension-s" : "2rem",
-          "--dimension-m" : "3rem",
-          "--dimension-l" : "4rem",
-          "--dimension-xl" : "5rem",
-          "--dimension-2xl" : "6rem",
-          "--dimension-3xl" : "7rem",
-          "--dimension-4xl" : "8rem",
-          "--dimension-5xl" : "9rem",
-          "--dimension-6xl" : "10rem",
-          "--dimension-7xl" : "11rem",
-          "--dimension-8xl" : "12rem",
-          "--dimension-9xl" : "15rem"
+          "--dimension-xs": "1rem",
+          "--dimension-s": "2rem",
+          "--dimension-m": "3rem",
+          "--dimension-l": "4rem",
+          "--dimension-xl": "5rem",
+          "--dimension-2xl": "6rem",
+          "--dimension-3xl": "7rem",
+          "--dimension-4xl": "8rem",
+          "--dimension-5xl": "9rem",
+          "--dimension-6xl": "10rem",
+          "--dimension-7xl": "11rem",
+          "--dimension-8xl": "12rem",
+          "--dimension-9xl": "15rem"
         },
-        "typography": { 
-          "--font-family-sans" : "ui-sans-serif, sans-serif,Segoe UI Emoji, Segoe UI Symbol",
-          "--font-family-sherif" : "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
-          "--font-family-mono" : "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-          "--font-weight-thin" : "100",
-          "--font-weight-light" : "300",
-          "--font-weight-medium" : "500",
-          "--font-weight-bold" : "700",
-          "--font-weight-xbold" : "900",
-          "--font-size-xs" : "0.75rem",
-          "--font-size-s" : "1rem",
-          "--font-size-m" : "1.5rem",
-          "--font-size-l" : "2rem",
-          "--font-size-xl" : "3rem",
-          "--font-size-2xl" : "5rem"
+        "typography": {
+          "--font-family-sans": "ui-sans-serif, sans-serif,Segoe UI Emoji, Segoe UI Symbol",
+          "--font-family-sherif": "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
+          "--font-family-mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+          "--font-weight-thin": "100",
+          "--font-weight-light": "300",
+          "--font-weight-medium": "500",
+          "--font-weight-bold": "700",
+          "--font-weight-xbold": "900",
+          "--font-size-xs": "0.75rem",
+          "--font-size-s": "1rem",
+          "--font-size-m": "1.5rem",
+          "--font-size-l": "2rem",
+          "--font-size-xl": "3rem",
+          "--font-size-2xl": "5rem"
         },
         "box-shadow": {
-          "--box-shadow-none" : "none",
-          "--box-shadow1" : "0 0 0 2px rgb(5 145 255 / 20%)",
-          "--box-shadow2" : "0 2px 5px 1px rgb(64 60 67 / 16%)",
-          "--box-shadow3" : "0 2px 8px 1px rgb(64 60 67 / 24%)",
-          "--box-shadow4" : "0 0 0 3px #93C5FD",
-          "--box-shadow5" : "0 0 0 3px rgb(72 180 97 / 50%)",
-          "--box-shadow6" : "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
-          "--box-shadow7" : "0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)"
+          "--box-shadow-none": "none",
+          "--box-shadow1": "0 0 0 2px rgb(5 145 255 / 20%)",
+          "--box-shadow2": "0 2px 5px 1px rgb(64 60 67 / 16%)",
+          "--box-shadow3": "0 2px 8px 1px rgb(64 60 67 / 24%)",
+          "--box-shadow4": "0 0 0 3px #93C5FD",
+          "--box-shadow5": "0 0 0 3px rgb(72 180 97 / 50%)",
+          "--box-shadow6": "0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
+          "--box-shadow7": "0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)"
         },
         "image": {
-          "--radio-img" : "url(http://cdn.onlinewebfonts.com/svg/img_504781.png)",
+          "--radio-img": "url(http://cdn.onlinewebfonts.com/svg/img_504781.png)",
           "--radio-checked-img": "url(https://www.svgrepo.com/download/88683/woman.svg)",
-          "--checkbox-img" : "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3uRfFFTdwtJBBRDuybKlX1oyQXQjCPa3RVw&usqp=CAU)"
+          "--checkbox-img": "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3uRfFFTdwtJBBRDuybKlX1oyQXQjCPa3RVw&usqp=CAU)"
         },
         "transition": {
-          "--transition-1" : "0.1s",
-          "--transition-2" : "0.2s",
-          "--transition-3" : "0.3s",
-          "--transition-4" : "0.4s",
-          "--transition-5" : "0.5s"
+          "--transition-1": "0.1s",
+          "--transition-2": "0.2s",
+          "--transition-3": "0.3s",
+          "--transition-4": "0.4s",
+          "--transition-5": "0.5s"
         }
-        
+
       },
       all: {
         default: {
           "box-sizing": "border-box",
           "padding": 0,
           "margin": 0,
-          "color": "black",
-          "font-family": "sans-serif",
+          "color": "var(--light-fg-color)",
+          "font-family": "var(--font-family-sans)",
         },
         // hover:{
 
@@ -134,8 +143,8 @@ export class QuickStyleService {
         inputGroup: {
           default: {
             "height": "var(--dimension-s)",
-            "width": "var(--dimension-9xl)", 
-            "padding": "4px 10px",
+            "width": "var(--dimension-9xl)",
+            "padding": "var(--spacing-m) var(--spacing-2xl)",
             "border": "var(--spacing-s) solid var(--primary-bg-color)",
             "border-radius": "var(--radius-m)",
             "outline": "none",
@@ -148,8 +157,8 @@ export class QuickStyleService {
             "box-shadow": "var(--box-shadow1)"
           },
           disabled: {
-            "background-color": "#ccc",
-            "border": "var(--spacing-xs)solid #ccc"
+            "background-color": "var(--disabled-bg-color)",
+            "border": "var(--spacing-xs)solid var(--disabled-bg-color)"
           }
         },
         buttonGroup: {
@@ -157,12 +166,12 @@ export class QuickStyleService {
             "padding": "var(--spacing-xl) var(--spacing-3xl)",
             "border-radius": "var(--radius-m)",
             "border": "var(--spacing-none)",
-            "cursor":"pointer",
+            "cursor": "pointer",
             "background-color": "var(--primary-bg-color)",
-            "color" : "var(--primary-fg-color)"
+            "color": "var(--primary-fg-color)"
           },
           hover: {
-            "border": "2px solid rgb(0 0 0 / 14%)"
+
           },
           focus: {
 
@@ -176,11 +185,11 @@ export class QuickStyleService {
         },
         radioGroup: {
           default: {
-            "height":"var(--dimension-s)",
-            "width":"var(--dimension-s)",
+            "height": "var(--dimension-s)",
+            "width": "var(--dimension-s)",
             "appearance": "none",
             "border": "var(--spacing-xs) solid black",
-            "cursor":"pointer",
+            "cursor": "pointer",
           },
           hover: {
             "border": "var(--spacing-s) solid var(--primary-bg-color)"
@@ -188,7 +197,7 @@ export class QuickStyleService {
           focus: {
 
           },
-          checked : {
+          checked: {
 
           },
           disabled: {
@@ -197,22 +206,22 @@ export class QuickStyleService {
         },
         switchGroup: {
           default: {
-            "display":"flex",
-            "width":"var(--dimension-m)",
-            "height":"1.5rem",
-            "border":"var(--spacing-xs) solid black",
-            "border-radius":"var(--radius-3xl)",
-            "background-color":"var(--tertiary-bg-color)",
-            "align-items" : "center",
-            "padding" : "var(--spacing-s)"
+            "display": "flex",
+            "width": "var(--dimension-m)",
+            "height": "var(--spacing-4xl)",
+            "border": "var(--spacing-xs) solid black",
+            "border-radius": "var(--radius-3xl)",
+            "background-color": "var(--tertiary-bg-color)",
+            "align-items": "center",
+            "padding": "var(--spacing-s)"
           },
           hover: {
-            
+
           },
           focus: {
 
           },
-          checked : {
+          checked: {
 
           },
           disabled: {
@@ -223,14 +232,14 @@ export class QuickStyleService {
     },
     componentList: [
       {
-        name : "textBox",
+        name: "textBox",
         tagName: "input",
         attributes: {
           type: "text",
           placeholder: "text"
         },
         groupName: "inputGroup",
-        specific: {  
+        specific: {
           default: {
             "border": "var(--spacing-xs) solid transparent",
             "box-shadow": "var(--box-shadow2)",
@@ -238,12 +247,12 @@ export class QuickStyleService {
           },
           hover: {
             "box-shadow": "var(--box-shadow3)",
-            "border": "var(--spacing-xs) solid rgba(223,225,229,0)"
+            "border": "var(--spacing-xs) solid var(--primary-hov-color)"
           },
           focus: {
             "width": "300px",
             "box-shadow": "var(--box-shadow3)",
-            "border": "var(--spacing-xs) solid rgba(223,225,229,0)",
+            "border": "var(--spacing-xs) solid var(--primary-hov-color)",
             "transition": "var(--transition-3) width"
           },
           disabled: {
@@ -252,7 +261,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"numberBox",
+        name: "numberBox",
         tagName: "input",
         attributes: {
           type: "number",
@@ -275,7 +284,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"emailBox",
+        name: "emailBox",
         tagName: "input",
         attributes: {
           type: "email",
@@ -286,21 +295,21 @@ export class QuickStyleService {
           default: {
             "border": "var(--spacing-none)",
             "border-bottom": "var(--spacing-xs) solid #8D8D8D",
-            "background-color": "var(--tertiary-bg-color)",   
-            "border-radius" : "var(--radius-none)", 
+            "background-color": "var(--tertiary-bg-color)",
+            "border-radius": "var(--radius-none)",
             "border-top-left-radius": "var(--radius-s)",
-            "border-top-right-radius": "var(--radius-s)"   
+            "border-top-right-radius": "var(--radius-s)"
           },
           hover: {
             "border": "var(--spacing-none)",
-            "background-color": "#EBECF0",
-            "border-bottom": "var(--spacing-xs) solid #8D8D8D"
+            "background-color": "var(--tertiary-hov-color)",
+            "border-bottom": "var(--spacing-xs) solid var(--secondary-hov-color)"
           },
           focus: {
-            "box-shadow" : "var(--box-shadow-none)",
+            "box-shadow": "var(--box-shadow-none)",
             "border": "var(--spacing-none)",
             "border-bottom": "var(--spacing-s) solid var(--warning-bg-color)",
-            "transition" : "border-color var(--transition-2) linear"
+            "transition": "border-color var(--transition-2) linear"
           },
           disabled: {
 
@@ -308,7 +317,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"password",
+        name: "password",
         tagName: "input",
         attributes: {
           type: "password",
@@ -331,7 +340,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"date",
+        name: "date",
         tagName: "input",
         attributes: {
           type: "date",
@@ -344,10 +353,10 @@ export class QuickStyleService {
           },
           hover: {
             "background-color": "var(--tertiary-bg-color)",
-            "border": "var(--spacing-s) solid #EBECF0"
+            "border": "var(--spacing-s) solid var(--tertiary-hov-color)"
           },
           focus: {
-            "background-color": "#fff",
+            "background-color": "var(--light-foc-color)",
             "box-shadow": "var(--box-shadow-none)",
 
           },
@@ -357,7 +366,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"textarea",
+        name: "textarea",
         tagName: "textarea",
         attributes: {
           placeholder: "textarea"
@@ -367,15 +376,15 @@ export class QuickStyleService {
           default: {
             "height": "100px",
             "background-color": "var(--tertiary-bg-color)",
-            "border": "2px solid #DFE1E6"
+            "border": "var(--spacing-s) solid var(--light-hov-color)"
           },
           hover: {
-            "background-color": "#EBECF0",
-            "border": "2px solid #DFE1E6"
+            "background-color": "var(--tertiary-hov-color)",
+            "border": "var(--spacing-s) solid var(--light-hov-color)"
           },
           focus: {
-            "background-color": "#FFFFFF",
-            "border": "2px solid var(--primary-bg-color)",
+            "background-color": "var(--light-foc-color)",
+            "border": "var(--spacing-s) solid var(--primary-bg-color)",
             "box-shadow": "var(--box-shadow-none)"
           },
           disabled: {
@@ -384,7 +393,7 @@ export class QuickStyleService {
         }
       },
       {
-        name : "primary-btn",
+        name: "primary-btn",
         tagName: "button",
         attributes: {
           value: "primary"
@@ -394,7 +403,7 @@ export class QuickStyleService {
         specific: {
           default: {
             "background-color": "var(--primary-bg-color)",
-            "color" : "var(--primary-fg-color)"
+            "color": "var(--primary-fg-color)"
           },
           hover: {
             "background-color": "#1D4ED8",
@@ -411,7 +420,7 @@ export class QuickStyleService {
         }
       },
       {
-        name :"secondary-btn",
+        name: "secondary-btn",
         tagName: "button",
         attributes: {
           value: "secondary"
@@ -439,7 +448,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"success-btn",
+        name: "success-btn",
         tagName: "button",
         attributes: {
           value: "success"
@@ -449,7 +458,7 @@ export class QuickStyleService {
         specific: {
           default: {
             "background-color": "var(--success-bg-color)",
-            "color" : "var(--success-fg-color)"
+            "color": "var(--success-fg-color)"
           },
           hover: {
             "background-color": "#218838",
@@ -468,7 +477,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"add-btn",
+        name: "add-btn",
         tagName: "button",
         attributes: {
           value: "add"
@@ -480,7 +489,7 @@ export class QuickStyleService {
             "height": "var(--dimension-m)",
             "width": "var(--dimension-m)",
             "background-color": "var(--warning-bg-color)",
-            "color" : "var(--warning-fg-color)",
+            "color": "var(--warning-fg-color)",
             "border-radius": "var(--radius-rounded)",
             "padding": "0px",
             "font-size": "var(--font-size-m)",
@@ -503,7 +512,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"selectBox",
+        name: "selectBox",
         tagName: "select",
         attributes: {
           name: "colors"
@@ -526,7 +535,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"autoSuggest",
+        name: "autoSuggest",
         tagName: "input",
         attributes: {
           list: "colors"
@@ -554,7 +563,7 @@ export class QuickStyleService {
         }
       },
       {
-        name:"radio-btn",
+        name: "radio-btn",
         tagName: "input",
         attributes: {
           type: "radio",
@@ -570,78 +579,184 @@ export class QuickStyleService {
             "background-size": "cover"
           },
           hover: {
-            
+
           },
           checked: {
             "background-image": "var(--radio-checked-img)",
-          },  
-          focus:{
+          },
+          focus: {
 
           },
           disabled: {
-           "opacity":0.6
+            "opacity": 0.6
           }
         }
       },
       {
-        name :"checkBox",
+        name: "checkBox",
+        tagName: "input",
+        attributes: {
+          type: "checkbox",
+          name: "color",
+          id: "test"
+        },
+        groupName: "radioGroup",
+        labelName: "test",
+        specific: {
+          default: {
+            "background-size": "cover",
+            "border-radius": "var(--radius-m)"
+          },
+          hover: {
+
+          },
+          checked: {
+            "background-image": "var(--checkbox-img)"
+          },
+          focus: {
+
+          },
+          disabled: {
+            "opacity": 0.6
+          }
+        }
+      },
+      {
+        name: "checkBox",
         tagName: "input",
         attributes: {
           type: "checkbox",
           name: "colors",
-          id: "red"
         },
         groupName: "radioGroup",
-        labelName: "red",
+        options : [{
+          "label" : "red",
+          "default" : {
+          },
+          "checked" : {
+            "background-color" : "red"
+          }
+        },
+        {
+          "label" : "green",
+          "default" : {
+          },
+          "checked" : {
+            "background-color" : "green"
+          }
+        },
+        {
+          "label" : "blue",
+          "default" : {
+          },
+          "checked" : {
+            "background-color" : "blue"
+          }
+        },
+      ],
         specific: {
           default: {
-            "background-size": "cover", 
-            "border-radius":"var(--radius-m)"
+            "border-radius": "var(--radius-m)"
           },
           hover: {
-            
+
           },
           checked: {
-            "background-image":"var(--checkbox-img)"
+            
           },
-          focus:{
+          focus: {
 
           },
           disabled: {
-            "opacity":0.6
+            "opacity": 0.6
           }
         }
       },
       {
-        name:"switchBox",
+        name: "radio-btn",
         tagName: "input",
         attributes: {
-          class:"slider",
-          type : "checkbox"
+          type: "radio",
+          name: "vehicle",
         },
-        switchBox :true,
-        groupName : "switchGroup",
+        groupName: "radioGroup",
+        options : [{
+          "label" : "bike",
+          "default" : {
+            "background-image" : "none"
+          },
+          "checked" : {
+            "background-image" : "url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Clipart_Motorcycle.svg/2514px-Clipart_Motorcycle.svg.png)"
+          }
+        },
+        {
+          "label" : "car",
+          "default" : {
+            "background-image" : "none"
+          },
+          "checked" : {
+            "background-image" : "url(https://www.svgrepo.com/download/125/car.svg)"
+          }
+        },
+        {
+          "label" : "bus",
+          "default" : {
+            "background-image" : "none"
+          },
+          "checked" : {
+            "background-image" : "url(https://u7.uidownload.com/vector/381/502/vector-tourism-bus-free-vector-ai-eps-svg-thumbnail.jpg)"
+          }
+        },
+      ],
         specific: {
           default: {
-            "appearance" : "none",
-            "height" :"var(--dimension-xs)",
-            "width" : "var(--dimension-xs)",
-            "background-color":"var(--danger-bg-color)",
-            "transition" :"var(--transition-4)",
-            "border-radius" : "var(--radius-rounded)"  
+            "border-radius": "var(--radius-rounded)",
+            "background-size": "cover",
           },
           hover: {
 
           },
           checked: {
-            "background-color" : "var(--success-bg-color)",
-            "transform" : "translateX(22px)"
+            
           },
-          focus:{
+          focus: {
 
           },
           disabled: {
-            "opacity":0.6
+            "opacity": 0.6
+          }
+        }
+      },
+      {
+        name: "switchBox",
+        tagName: "input",
+        attributes: {
+          class: "slider",
+          type: "checkbox"
+        },
+        switchBox: true,
+        groupName: "switchGroup",
+        specific: {
+          default: {
+            "appearance": "none",
+            "height": "var(--dimension-xs)",
+            "width": "var(--dimension-xs)",
+            "background-color": "var(--danger-bg-color)",
+            "transition": "var(--transition-4)",
+            "border-radius": "var(--radius-rounded)"
+          },
+          hover: {
+
+          },
+          checked: {
+            "background-color": "var(--success-bg-color)",
+            "transform": "translateX(22px)"
+          },
+          focus: {
+
+          },
+          disabled: {
+            "opacity": 0.6
           }
         }
       },
