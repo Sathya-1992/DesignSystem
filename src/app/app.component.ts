@@ -21,6 +21,7 @@ export class AppComponent {
   ngOnInit(): void {
     let resetCss = this.dataService.designSystem.styles.all['default'];
     let variableCss = this.dataService.designSystem.styles[':root'];
+    let fontSizeCss = this.dataService.designSystem.styles['html'];
     let rootVariable = this.dataService.designSystem.styles.variable;
     let rootObj;
     for (const property in rootVariable) {
@@ -28,6 +29,7 @@ export class AppComponent {
     }
     let groupCss: any = this.dataService.designSystem.styles.group;
     this.generateStylesheetProperty('*', resetCss);
+    this.generateStylesheetProperty('html',fontSizeCss);
     this.generateStylesheetProperty(":root", rootObj);
     let groupNames: string[] = Object.keys(groupCss);
 
@@ -43,7 +45,6 @@ export class AppComponent {
     this.generateComponentList();
   }
   generateStylesheetProperty(selectorText: string, cssText: any) {
-    console.log("----" ,cssText);
     let cssProp = '';
     for (const [property, value] of Object.entries(cssText)) {
       cssProp += `${property}: ${value};`;
@@ -115,14 +116,14 @@ export class AppComponent {
         this.generateAutosuggestBoxComp(list);
       }
       else if (list.tagName === "input" && list.hasOwnProperty("switchBox")) {
-        let labelEle : HTMLElement = document.createElement("label");
+        let labelEle: HTMLElement = document.createElement("label");
         labelEle.className = list.groupName;
         labelEle.appendChild(element);
         element = labelEle;
       }
-      else if (list.tagName === "input" && (list.attributes.type === "radio" || list.attributes.type === "checkbox") && list.hasOwnProperty("options")){
-        let divElement : HTMLElement = document.createElement("div");
-        let parent : HTMLElement = this.generateCheckboxComp(list,divElement);
+      else if (list.tagName === "input" && (list.attributes.type === "radio" || list.attributes.type === "checkbox") && list.hasOwnProperty("options")) {
+        let divElement: HTMLElement = document.createElement("div");
+        let parent: HTMLElement = this.generateCheckboxComp(list, divElement);
         this.divParentEle.appendChild(parent);
       }
       if (list.hasOwnProperty("groupName") && list.groupName != "switchGroup") {
@@ -131,10 +132,10 @@ export class AppComponent {
       if (list.hasOwnProperty("textContent")) {
         element.textContent = list.textContent;
       }
-      if (!(list.tagName === "input" && (list.attributes.type === "radio" || list.attributes.type === "checkbox") && list.hasOwnProperty("options"))){
+      if (!(list.tagName === "input" && (list.attributes.type === "radio" || list.attributes.type === "checkbox") && list.hasOwnProperty("options"))) {
         this.divParentEle.appendChild(element);
       }
-      
+
 
       if (list.hasOwnProperty("specific")) {
         this.getStyleSheetProperty(list, 'specific')
@@ -202,12 +203,12 @@ export class AppComponent {
     this.divParentEle.appendChild(dataInput);
   }
 
-  generateCheckboxComp(list : any,divElement : HTMLElement){
-    if(list.hasOwnProperty("options") && Object.keys(list.options).length){
-      list.options.forEach((prop : any) => {
+  generateCheckboxComp(list: any, divElement: HTMLElement) {
+    if (list.hasOwnProperty("options") && Object.keys(list.options).length) {
+      list.options.forEach((prop: any) => {
         let divEle = this.renderer.createElement("div");
         divEle.className = "flexAlign";
-        let inputEle : HTMLInputElement = document.createElement(list.tagName);
+        let inputEle: HTMLInputElement = document.createElement(list.tagName);
         inputEle.id = prop.label;
         inputEle.className = list.groupName;
         if (list.hasOwnProperty("attributes") && Object.keys(list.attributes).length) {
@@ -216,17 +217,17 @@ export class AppComponent {
           }
         }
         divEle.appendChild(inputEle);
-        if(prop.hasOwnProperty("label")){
+        if (prop.hasOwnProperty("label")) {
           let labEle = document.createElement("label");
-          labEle.setAttribute("for",prop.label);
+          labEle.setAttribute("for", prop.label);
           labEle.textContent = prop.label;
           divEle.appendChild(labEle);
         }
-        if(prop.hasOwnProperty("default") && Object.keys(prop.default).length){
-          this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]`,prop.default);
+        if (prop.hasOwnProperty("default") && Object.keys(prop.default).length) {
+          this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]`, prop.default);
         }
-        if(prop.hasOwnProperty("checked") && Object.keys(prop.checked).length){
-          this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]:checked`,prop.checked);
+        if (prop.hasOwnProperty("checked") && Object.keys(prop.checked).length) {
+          this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]:checked`, prop.checked);
         }
         divElement.appendChild(divEle);
       })

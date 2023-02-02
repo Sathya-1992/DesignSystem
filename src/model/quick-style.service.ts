@@ -8,39 +8,102 @@ export class QuickStyleService {
 
   constructor() { }
 
-  designSystem: { styles: { ":root": { [key in string]: {} }, "variable": { [key in string]: {} }, all: { [key in string]: {} }, group: { [key in string]: {} } }, componentList: {}[] } = {
+  designSystem: { styles: { ":root": { [key in string]: {} }, "html": {}, "variable": { [key in string]: {} }, all: { [key in string]: {} }, group: { [key in string]: {} } }, componentList: {}[] } = {
     styles: {
       ":root": {
 
       },
+      "html": {
+        "font-size": "16px"
+      },
       "variable": {
-        "background-color": {
-          "--primary-bg-color": "#007bff",
-          "--primary-fg-color": "#ffffff",
-          "--secondary-bg-color": "#6c757d",
-          "--secondary-fg-color": "#1E40AF",
-          "--tertiary-bg-color": "#F4F4F4",
-          "--tertiary-fg-color": "000000",
-          "--success-bg-color": "#28a745",
-          "--success-fg-color": "#ffffff",
-          "--warning-bg-color": "#6200EE",
-          "--warning-fg-color": "#ffffff",
-          "--danger-bg-color": "#dc3545",
-          "--danger-fg-color": "#ffffff",
-          "--info-bg-color": "#17a2b8",
-          "--info-fg-color": "#ffffff",
-          "--light-bg-color": "#f8f9fa",
-          "--light-fg-color": "#000000",
-          "--dark-bg-color": "#343a40",
-          "--dark-fg-color": "#ffffff",
-          "--disabled-bg-color": "#ccc"
+        "color-palette": {
+          "--blue-bg-color" : "#007bff",
+          "--blue-hov-color" : "#1D4ED8",
+          "--blue-act-color" : "#1e40af",
+          "--gray-bg-color": "#6c757d",
+          "--lightgray-bg-color":"#F4F4F4",
+          "--gray-hov-color" : "#dfe1e6",
+          "--lightgray-hov-color":"#ebecf0",
+          "--gray-bdr-color" : "#8D8D8D",
+          "--yellow-bg-color" : "#eac54f",
+          "--yellow-hov-color" : "#d4a72c",
+          "--yellow-act-color" : "#bf8700",
+          "--purple-bg-color":"#6200EE",
+          "--purple-outlined-fg-color":"#814dde",
+          "--purple-outlined-bdr-color" : "#e1cbff",
+          "--purple-outline-hov-color":"#f4eaff",
+          "--purple-outline-bdr-hov-color": "#c69eff",
+          "--purple-outline-act-color":"#e1cbff",
+          "--green-bg-color":"#28a745",
+          "--green-hov-color":"#218838",
+          "--green-act-color":"#1e7e34",
+          "--red-bg-color":"#dc3545",
+          "--light-bg-color":"#ffffff",
+          "--dark-bdr-color" : "#000000",
+          "--disabled-bg-color": "#ccc",
+          "--light-fg-color" : "#ffffff",
+          "--dark-fg-color" : "#000000",
+
         },
-        "hover-color": {
-          "--primary-hov-color": "rgba(223,225,229,0)",
-          "--secondary-hov-color": '#8d8d8d',
-          "--tertiary-hov-color": "#ebecf0",
-          "--light-hov-color": "#DFE1E6",
-          "--light-foc-color": "#ffffff"
+        "background-color": {
+          "--input-grp-bg-color" : "var(--light-bg-color)",
+          "--input-grp-fg-color" : "var(--dark-fg-color)",
+          "--input-grp-bdr-color" : "var(--blue-bg-color)",
+          "--input-grp-hov-color" : "var(--blue-bg-color)",
+          "--input-grp-foc-color" : "var(--blue-bg-color)",
+          // "--input1-bg-color" : "var(--light-bg-color)",
+          // "--input1-fg-color" : "var(--dark-fg-color)",
+          "--input1-hov-color" : "var(--gray-hov-color)",
+          // "--input2-bg-color" : "var(--light-bg-color)",
+          // "--input2-fg-color" : "var(--dark-fg-color)",
+          // "--input2-hov-color" : "var(--blue-bg-color)",
+           "--input3-bg-color" : "var(--lightgray-bg-color)",
+          // "--input3-fg-color" : "var(--dark-fg-color)",
+          "--input3-hov-color" : "var(--lightgray-hov-color)",
+          "--input3-bdr-color" : "var(--gray-bdr-color)",
+          "--input3-foc-color" : "var(--purple-bg-color)",
+          "--input4-bg-color" : "var(--lightgray-bg-color)",
+          // "--input4-fg-color" : "var(--dark-fg-color)",
+          "--input4-hov-color" : "var(--lightgray-hov-color)",
+          "--input4-bdr-color" : "var(--lightgray-bg-color)",
+          "--input4-foc-color" : "var(--light-bg-color)",
+          "--input5-bg-color" : "var(--lightgray-bg-color)",
+          // "--input5-fg-color" : "var(--dark-fg-color)",
+          "--input5-hov-color" : "var(--lightgray-hov-color)",
+          "--input5-bdr-color" : "var(--gray-hov-color)",
+          "--input5-foc-color" : "var(--light-bg-color)",
+          "--input5-foc-bdr-color" : "var(--blue-bg-color)",
+          
+          "--button-grp-bg-color" : "var(--blue-bg-color)",
+          "--button-grp-fg-color" : "var(--light-fg-color)",
+          "--primary-btn-bg-color" : "var(--blue-bg-color)",
+          "--primary-btn-hov-color":"var(--blue-hov-color)",
+          "--primary-btn-act-color": "var(--blue-act-color)",
+          "--secondary-btn-bg-color" : "var(--yellow-bg-color)",
+          "--secondary-btn-hov-color":"var(--yellow-hov-color)",
+          "--secondary-btn-act-color": "var(--yellow-act-color)",
+          "--secondary-btn-fg-color":"var(--dark-fg-color)",
+          "--success-btn-bg-color" : "var(--green-bg-color)",
+          "--success-btn-hov-color" : "var(--green-hov-color)",
+          "--success-btn-act-color" : "var(--green-act-color)",
+          "--add-btn-outlinedbg-color" : "var(--light-bg-color)",
+          "--add-btn-outlinedfg-color" : "var(--purple-outlined-fg-color)",
+          "--add-btn-outlinebdr-color" : "var(--purple-outlined-bdr-color)",
+          "--add-btn-outline-hov-color" : "var(--purple-outline-hov-color)",
+          "--add-btn-outline-bdrhov-color" : "var(--purple-outline-bdr-hov-color)",
+          "--add-btn-outline-act-color":"var(--purple-outline-act-color)",  
+
+          "--radio-grp-bdr-color" : "var(--dark-bdr-color)",
+          "--radio-grp-hov-color" : "var(--blue-hov-color)",
+          "--red-label-color" : "var(--red-bg-color)",
+          "--green-label-color" : "var(--green-bg-color)",
+          "--blue-label-color" : "var(--blue-bg-color)",
+
+          "--switch-grp-bg-color" : "var(--light-bg-color)",
+          "--slider-offbg-color" : "var(--red-bg-color)",
+          "--slider-onbg-color" : "var(--green-bg-color)"
+
         },
         "radius": {
           "--radius-none": "0px",
@@ -108,9 +171,12 @@ export class QuickStyleService {
           "--box-shadow7": "0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)"
         },
         "image": {
-          "--radio-img": "url(http://cdn.onlinewebfonts.com/svg/img_504781.png)",
-          "--radio-checked-img": "url(https://www.svgrepo.com/download/88683/woman.svg)",
-          "--checkbox-img": "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3uRfFFTdwtJBBRDuybKlX1oyQXQjCPa3RVw&usqp=CAU)"
+          "--radio-img": "url(./assets/radio-btn1.png)",
+          "--radio-checked-img": "url(./assets/radio-checked.svg)",
+          "--checkbox-img": "url(./assets/checkbox1.png)",
+          "--radio-bike-img": "url(./assets/bike.png)",
+          "--radio-car-img": "url(./assets/car.svg)",
+          "--radio-bus-img": "url(./assets/bus.jpeg)"
         },
         "transition": {
           "--transition-1": "0.1s",
@@ -126,7 +192,7 @@ export class QuickStyleService {
           "box-sizing": "border-box",
           "padding": 0,
           "margin": 0,
-          "color": "var(--light-fg-color)",
+          "color": "var(--dark-fg-color)",
           "font-family": "var(--font-family-sans)",
         },
         // hover:{
@@ -145,15 +211,17 @@ export class QuickStyleService {
             "height": "var(--dimension-s)",
             "width": "var(--dimension-9xl)",
             "padding": "var(--spacing-m) var(--spacing-2xl)",
-            "border": "var(--spacing-s) solid var(--primary-bg-color)",
+            "border": "var(--spacing-s) solid var(--input-grp-bdr-color)",
             "border-radius": "var(--radius-m)",
             "outline": "none",
+            "background-color" : "var(--input-grp-bg-color)",
+            "color" : "var(--input-grp-fg-color)",
           },
           hover: {
-            "border": "var(--spacing-xs)solid var(--primary-bg-color)"
+            "border": "var(--spacing-xs)solid var(--input-grp-hov-color)"
           },
           focus: {
-            "border": "var(--spacing-xs) solid var(--primary-bg-color)",
+            "border": "var(--spacing-xs) solid var(--input-grp-foc-color)",
             "box-shadow": "var(--box-shadow1)"
           },
           disabled: {
@@ -167,8 +235,8 @@ export class QuickStyleService {
             "border-radius": "var(--radius-m)",
             "border": "var(--spacing-none)",
             "cursor": "pointer",
-            "background-color": "var(--primary-bg-color)",
-            "color": "var(--primary-fg-color)"
+            "background-color": "var(--button-grp-bg-color)",
+            "color": "var(--button-grp-fg-color)"
           },
           hover: {
 
@@ -188,11 +256,11 @@ export class QuickStyleService {
             "height": "var(--dimension-s)",
             "width": "var(--dimension-s)",
             "appearance": "none",
-            "border": "var(--spacing-xs) solid black",
+            "border": "var(--spacing-xs) solid var(--radio-grp-bdr-color)",
             "cursor": "pointer",
           },
           hover: {
-            "border": "var(--spacing-s) solid var(--primary-bg-color)"
+            "border": "var(--spacing-s) solid var(--radio-grp-hov-color)"
           },
           focus: {
 
@@ -209,9 +277,9 @@ export class QuickStyleService {
             "display": "flex",
             "width": "var(--dimension-m)",
             "height": "var(--spacing-4xl)",
-            "border": "var(--spacing-xs) solid black",
+            "border": "var(--spacing-xs) solid var(--radio-grp-bdr-color)",
             "border-radius": "var(--radius-3xl)",
-            "background-color": "var(--tertiary-bg-color)",
+            "background-color": "var(--switch-grp-bg-color)",
             "align-items": "center",
             "padding": "var(--spacing-s)"
           },
@@ -247,12 +315,12 @@ export class QuickStyleService {
           },
           hover: {
             "box-shadow": "var(--box-shadow3)",
-            "border": "var(--spacing-xs) solid var(--primary-hov-color)"
+            "border": "var(--spacing-xs) solid var(--input1-hov-color)"
           },
           focus: {
             "width": "300px",
             "box-shadow": "var(--box-shadow3)",
-            "border": "var(--spacing-xs) solid var(--primary-hov-color)",
+            "border": "var(--spacing-xs) solid var(--input1-hov-color)",
             "transition": "var(--transition-3) width"
           },
           disabled: {
@@ -294,21 +362,21 @@ export class QuickStyleService {
         specific: {
           default: {
             "border": "var(--spacing-none)",
-            "border-bottom": "var(--spacing-xs) solid #8D8D8D",
-            "background-color": "var(--tertiary-bg-color)",
+            "border-bottom": "var(--spacing-xs) solid var(--input3-bdr-color)",
+            "background-color": "var(--input3-bg-color)",
             "border-radius": "var(--radius-none)",
             "border-top-left-radius": "var(--radius-s)",
             "border-top-right-radius": "var(--radius-s)"
           },
           hover: {
             "border": "var(--spacing-none)",
-            "background-color": "var(--tertiary-hov-color)",
-            "border-bottom": "var(--spacing-xs) solid var(--secondary-hov-color)"
+            "background-color": "var(--input3-hov-color)",
+            "border-bottom": "var(--spacing-xs) solid var(--input3-bdr-color)"
           },
           focus: {
             "box-shadow": "var(--box-shadow-none)",
             "border": "var(--spacing-none)",
-            "border-bottom": "var(--spacing-s) solid var(--warning-bg-color)",
+            "border-bottom": "var(--spacing-s) solid var(--input3-foc-color)",
             "transition": "border-color var(--transition-2) linear"
           },
           disabled: {
@@ -348,15 +416,15 @@ export class QuickStyleService {
         groupName: "inputGroup",
         specific: {
           default: {
-            "background-color": "var(--tertiary-bg-color)",
-            "border": "var(--spacing-xs) solid var(--tertiary-bg-color)"
+            "background-color": "var(--input4-bg-color)",
+            "border": "var(--spacing-xs) solid var(--input4-bg-color)"
           },
           hover: {
-            "background-color": "var(--tertiary-bg-color)",
-            "border": "var(--spacing-s) solid var(--tertiary-hov-color)"
+            "background-color": "var(--input4-bg-color)",
+            "border": "var(--spacing-s) solid var(--input4-hov-color)"
           },
           focus: {
-            "background-color": "var(--light-foc-color)",
+            "background-color": "var(--input4-foc-color)",
             "box-shadow": "var(--box-shadow-none)",
 
           },
@@ -374,17 +442,17 @@ export class QuickStyleService {
         groupName: "inputGroup",
         specific: {
           default: {
-            "height": "100px",
-            "background-color": "var(--tertiary-bg-color)",
-            "border": "var(--spacing-s) solid var(--light-hov-color)"
+            "height": "var(--dimension-2xl)",
+            "background-color": "var(--input5-bg-color)",
+            "border": "var(--spacing-s) solid var(--input5-bdr-color)"
           },
           hover: {
-            "background-color": "var(--tertiary-hov-color)",
-            "border": "var(--spacing-s) solid var(--light-hov-color)"
+            "background-color": "var(--input5-hov-color)",
+            "border": "var(--spacing-s) solid var(--input5-bdr-color)"
           },
           focus: {
-            "background-color": "var(--light-foc-color)",
-            "border": "var(--spacing-s) solid var(--primary-bg-color)",
+            "background-color": "var(--input5-foc-color)",
+            "border": "var(--spacing-s) solid var(--input5-foc-bdr-color)",
             "box-shadow": "var(--box-shadow-none)"
           },
           disabled: {
@@ -402,17 +470,16 @@ export class QuickStyleService {
         groupName: "buttonGroup",
         specific: {
           default: {
-            "background-color": "var(--primary-bg-color)",
-            "color": "var(--primary-fg-color)"
+            "background-color": "var(--primary-btn-bg-color)",
           },
           hover: {
-            "background-color": "#1D4ED8",
+            "background-color": "var(--primary-btn-hov-color)",
           },
           focus: {
             "box-shadow": "var(--box-shadow4)"
           },
           active: {
-            "background-color": "#1E40AF"
+            "background-color": "var(--primary-btn-act-color)"
           },
           disabled: {
             "opacity": 0.6
@@ -429,18 +496,18 @@ export class QuickStyleService {
         groupName: "buttonGroup",
         specific: {
           default: {
-            "background-color": "var(--secondary-bg-color)",
-            "color": "var(--secondary-fg-color)",
-            "border-radius": "var(--radius-3xl)"
+            "background-color": "var(--secondary-btn-bg-color)",
+            "border-radius": "var(--radius-3xl)",
+            "color" : "var(--secondary-btn-fg-color)"
           },
           hover: {
-            "background-color": "#DBEAFE",
+            "background-color": "var(--secondary-btn-hov-color)",
           },
           focus: {
             "box-shadow": "var(--box-shadow4)"
           },
           active: {
-            "background-color": "#EEF2FF"
+            "background-color": "var(--secondary-btn-act-color)"
           },
           disabled: {
             "opacity": 0.6
@@ -457,19 +524,17 @@ export class QuickStyleService {
         groupName: "buttonGroup",
         specific: {
           default: {
-            "background-color": "var(--success-bg-color)",
-            "color": "var(--success-fg-color)"
+            "background-color": "var(--success-btn-bg-color)",
           },
           hover: {
-            "background-color": "#218838",
-            "border": "1px solid #1E7E34"
+            "background-color": "var(--success-btn-hov-color)",
+            "border": "1px solid var(--success-btn-act-color)"
           },
           focus: {
             "box-shadow": "var(--box-shadow5)"
           },
           active: {
-            "background-color": "#1E7E34",
-            "border": "var(--spacing-s) solid #1C7430"
+            "background-color": "var(--success-btn-act-color)",
           },
           disabled: {
             "opacity": 0.6
@@ -488,8 +553,9 @@ export class QuickStyleService {
           default: {
             "height": "var(--dimension-m)",
             "width": "var(--dimension-m)",
-            "background-color": "var(--warning-bg-color)",
-            "color": "var(--warning-fg-color)",
+            "background-color": "var(--add-btn-outlinedbg-color)",
+            "border" : "1px solid var(--add-btn-outlinebdr-color)",
+            "color" : "var(--add-btn-outlinedfg-color)",
             "border-radius": "var(--radius-rounded)",
             "padding": "0px",
             "font-size": "var(--font-size-m)",
@@ -498,13 +564,15 @@ export class QuickStyleService {
             "justify-content": "center"
           },
           hover: {
-            "box-shadow": "var(--box-shadow6)"
+            "background-color" : "var(--add-btn-outline-hov-color)",
+            "border" : "1px solid var(--add-btn-outline-bdrhov-color)"
+            // "box-shadow": "var(--box-shadow6)"
           },
           focus: {
             "box-shadow": "var(--box-shadow6)"
           },
           active: {
-            "box-shadow": "var(--box-shadow7)"
+            "background-color": "var(--add-btn-outline-act-color)"
           },
           disabled: {
             "opacity": 0.6
@@ -545,16 +613,16 @@ export class QuickStyleService {
         groupName: "inputGroup",
         specific: {
           default: {
-            "background-color": "var(--tertiary-bg-color)",
-            "border": "var(--spacing-s) solid #DFE1E6"
+            "background-color": "var(--input5-bg-color)",
+            "border": "var(--spacing-s) solid var(--input5-bdr-color)"
           },
           hover: {
-            "background-color": "#EBECF0",
-            "border": "var(--spacing-s) solid #DFE1E6"
+            "background-color": "var(--input5-hov-color)",
+            "border": "var(--spacing-s) solid var(--input5-bdr-color)"
           },
           focus: {
-            "background-color": "#FFFFFF",
-            "border": "var(--spacing-s) solid var(--primary-bg-color)",
+            "background-color": "var(--input5-foc-color)",
+            "border": "var(--spacing-s) solid var(--input5-foc-bdr-color)",
             "box-shadow": "var(--box-shadow-none)"
           },
           disabled: {
@@ -598,10 +666,8 @@ export class QuickStyleService {
         attributes: {
           type: "checkbox",
           name: "color",
-          id: "test"
         },
         groupName: "radioGroup",
-        labelName: "test",
         specific: {
           default: {
             "background-size": "cover",
@@ -629,31 +695,31 @@ export class QuickStyleService {
           name: "colors",
         },
         groupName: "radioGroup",
-        options : [{
-          "label" : "red",
-          "default" : {
+        options: [{
+          "label": "red",
+          "default": {
           },
-          "checked" : {
-            "background-color" : "red"
+          "checked": {
+            "background-color": "var(--red-label-color)"
           }
         },
         {
-          "label" : "green",
-          "default" : {
+          "label": "green",
+          "default": {
           },
-          "checked" : {
-            "background-color" : "green"
+          "checked": {
+            "background-color": "var(--green-label-color)"
           }
         },
         {
-          "label" : "blue",
-          "default" : {
+          "label": "blue",
+          "default": {
           },
-          "checked" : {
-            "background-color" : "blue"
+          "checked": {
+            "background-color": "var(--blue-label-color)"
           }
         },
-      ],
+        ],
         specific: {
           default: {
             "border-radius": "var(--radius-m)"
@@ -662,7 +728,7 @@ export class QuickStyleService {
 
           },
           checked: {
-            
+
           },
           focus: {
 
@@ -680,34 +746,34 @@ export class QuickStyleService {
           name: "vehicle",
         },
         groupName: "radioGroup",
-        options : [{
-          "label" : "bike",
-          "default" : {
-            "background-image" : "none"
+        options: [{
+          "label": "bike",
+          "default": {
+            "background-image": "none"
           },
-          "checked" : {
-            "background-image" : "url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Clipart_Motorcycle.svg/2514px-Clipart_Motorcycle.svg.png)"
+          "checked": {
+            "background-image": "var(--radio-bike-img)"
           }
         },
         {
-          "label" : "car",
-          "default" : {
-            "background-image" : "none"
+          "label": "car",
+          "default": {
+            "background-image": "none"
           },
-          "checked" : {
-            "background-image" : "url(https://www.svgrepo.com/download/125/car.svg)"
+          "checked": {
+            "background-image": "var(--radio-car-img)"
           }
         },
         {
-          "label" : "bus",
-          "default" : {
-            "background-image" : "none"
+          "label": "bus",
+          "default": {
+            "background-image": "none"
           },
-          "checked" : {
-            "background-image" : "url(https://u7.uidownload.com/vector/381/502/vector-tourism-bus-free-vector-ai-eps-svg-thumbnail.jpg)"
+          "checked": {
+            "background-image": "var(--radio-bus-img)"
           }
         },
-      ],
+        ],
         specific: {
           default: {
             "border-radius": "var(--radius-rounded)",
@@ -717,7 +783,7 @@ export class QuickStyleService {
 
           },
           checked: {
-            
+
           },
           focus: {
 
@@ -741,7 +807,7 @@ export class QuickStyleService {
             "appearance": "none",
             "height": "var(--dimension-xs)",
             "width": "var(--dimension-xs)",
-            "background-color": "var(--danger-bg-color)",
+            "background-color": "var(--slider-offbg-color)",
             "transition": "var(--transition-4)",
             "border-radius": "var(--radius-rounded)"
           },
@@ -749,7 +815,7 @@ export class QuickStyleService {
 
           },
           checked: {
-            "background-color": "var(--success-bg-color)",
+            "background-color": "var(--slider-onbg-color)",
             "transform": "translateX(22px)"
           },
           focus: {
