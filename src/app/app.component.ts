@@ -29,7 +29,7 @@ export class AppComponent {
     }
     let groupCss: any = this.dataService.designSystem.styles.group;
     this.generateStylesheetProperty('*', resetCss);
-    this.generateStylesheetProperty('html',fontSizeCss);
+    this.generateStylesheetProperty('html', fontSizeCss);
     this.generateStylesheetProperty(":root", rootObj);
     let groupNames: string[] = Object.keys(groupCss);
 
@@ -66,7 +66,17 @@ export class AppComponent {
           if (Object.keys(path[propName][stateName]).length) {
             if (stateName === 'default') {
               if (propName === 'specific') {
-                this.generateStylesheetProperty(`${path.tagName}[${Object.keys(path.attributes)[0]}=${Object.values(path.attributes)[0]}]`, path[propName][stateName]);
+                if(path[propName][stateName].hasOwnProperty("all")){
+                  this.generateStylesheetProperty(`${path.tagName}[${Object.keys(path.attributes)[0]}=${Object.values(path.attributes)[0]}]`, path[propName][stateName]["all"]);
+                }
+                else{
+                  this.generateStylesheetProperty(`${path.tagName}[${Object.keys(path.attributes)[0]}=${Object.values(path.attributes)[0]}]`, path[propName][stateName]);
+                }
+                if(path[propName][stateName].hasOwnProperty("options")){
+                  Object.keys(path[propName][stateName]["options"]).forEach((id) => {
+                    this.generateStylesheetProperty(`${path.tagName}[id=${id}]`,path[propName][stateName]["options"][id]);
+                  })
+                }
               }
               else {
                 this.generateStylesheetProperty(`.${propName}`, path[propName][stateName]);
@@ -75,9 +85,23 @@ export class AppComponent {
             }
             else {
               if (propName === 'specific') {
-                this.generateStylesheetProperty(`${path.tagName}[${Object.keys(path.attributes)[0]}=${Object.values(path.attributes)[0]}]:${stateName}`, path[propName][stateName]);
+                if(path[propName][stateName].hasOwnProperty("all")){
+                  this.generateStylesheetProperty(`${path.tagName}[${Object.keys(path.attributes)[0]}=${Object.values(path.attributes)[0]}]:${stateName}`, path[propName][stateName]["all"]);
 
-                this.generateStylesheetProperty(`${path.tagName}[${path.tagName}${Object.values(path.attributes)[0]}${stateName}=true]`, path[propName][stateName]);
+                  this.generateStylesheetProperty(`${path.tagName}[${path.tagName}${Object.values(path.attributes)[0]}${stateName}=true]`, path[propName][stateName]["all"]);
+                }
+                else{
+                  this.generateStylesheetProperty(`${path.tagName}[${Object.keys(path.attributes)[0]}=${Object.values(path.attributes)[0]}]:${stateName}`, path[propName][stateName]);
+
+                  this.generateStylesheetProperty(`${path.tagName}[${path.tagName}${Object.values(path.attributes)[0]}${stateName}=true]`, path[propName][stateName]);
+                }
+                if(path[propName][stateName].hasOwnProperty("options")){
+                  Object.keys(path[propName][stateName]["options"]).forEach((id) => {
+                    this.generateStylesheetProperty(`${path.tagName}[id=${id}]:${stateName}`,path[propName][stateName]["options"][id]);
+                    this.generateStylesheetProperty(`${path.tagName}[${path.tagName}${id}${stateName}=true]`,path[propName][stateName]["options"][id]);
+                  })
+                }
+               
                 this.generateStateComponent(path, stateName);
               }
               else {
@@ -172,6 +196,14 @@ export class AppComponent {
         labelEle.appendChild(element);
         element = labelEle;
       }
+      else if (compDetails.groupName === "radioGroup" && compDetails.hasOwnProperty("options")) {
+        let divParentEle = document.createElement("div");
+        compDetails.options.forEach((prop: any) => {
+          let divEle = this.getInputandLabelElement(prop, compDetails,stateName);
+          divParentEle.appendChild(divEle);
+          element = divParentEle;       
+        })
+      }
       else {
         element.classList.add(`${compDetails.groupName}-default`, `${compDetails.groupName}-${stateName}`);
       }
@@ -206,32 +238,50 @@ export class AppComponent {
   generateCheckboxComp(list: any, divElement: HTMLElement) {
     if (list.hasOwnProperty("options") && Object.keys(list.options).length) {
       list.options.forEach((prop: any) => {
-        let divEle = this.renderer.createElement("div");
-        divEle.className = "flexAlign";
-        let inputEle: HTMLInputElement = document.createElement(list.tagName);
-        inputEle.id = prop.label;
-        inputEle.className = list.groupName;
-        if (list.hasOwnProperty("attributes") && Object.keys(list.attributes).length) {
-          for (const [key, value] of Object.entries(list.attributes)) {
-            inputEle.setAttribute(key, value as string);
-          }
-        }
-        divEle.appendChild(inputEle);
-        if (prop.hasOwnProperty("label")) {
-          let labEle = document.createElement("label");
-          labEle.setAttribute("for", prop.label);
-          labEle.textContent = prop.label;
-          divEle.appendChild(labEle);
-        }
-        if (prop.hasOwnProperty("default") && Object.keys(prop.default).length) {
-          this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]`, prop.default);
-        }
-        if (prop.hasOwnProperty("checked") && Object.keys(prop.checked).length) {
-          this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]:checked`, prop.checked);
-        }
+        let divEle = this.getInputandLabelElement(prop, list,"default");
+
+        // if (list.hasOwnProperty("specific") && Object.keys(list.specific).length) {
+        //   Object.keys(list.specific).forEach(())
+        //     if (key === "default") {
+        //       this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]`, value);
+        //       this.generateStylesheetProperty(`${list.tagName}[id${prop.label}${key}=true]`,value);
+        //     }
+        //     else {
+        //       this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]:${key}`, value);
+        //       this.generateStylesheetProperty(`${list.tagName}[id${prop.label}${key}=true]`, value);
+        //     }
+          
+        // }
         divElement.appendChild(divEle);
       })
     }
     return divElement;
+  }
+
+  getInputandLabelElement(prop: any, list: any, stateName:string) {
+    let divEle = this.renderer.createElement("div");
+    divEle.className = "flexAlign";
+    let inputEle: HTMLInputElement = document.createElement(list.tagName);
+    inputEle.id = prop.label;
+    inputEle.className = list.groupName;
+    if (list.hasOwnProperty("attributes") && Object.keys(list.attributes).length) {
+      for (const [key, value] of Object.entries(list.attributes)) {
+        inputEle.setAttribute(key, value as string);
+      }
+    }
+    if(stateName !== "default"){
+      inputEle.classList.add(`${list.groupName}-default`, `${list.groupName}-${stateName}`);
+      inputEle.setAttribute(`${list.tagName}${Object.values(list.attributes)[0]}${stateName}`, "true")
+      inputEle.setAttribute(`${list.tagName}${prop.label}${stateName}`, "true");
+      
+    }
+    divEle.appendChild(inputEle);
+    if (prop.hasOwnProperty("label")) {
+      let labEle = document.createElement("label");
+      labEle.setAttribute("for", prop.label);
+      labEle.textContent = prop.label;
+      divEle.appendChild(labEle);
+    }
+    return divEle;
   }
 }
