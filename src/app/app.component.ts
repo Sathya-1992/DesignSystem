@@ -189,6 +189,7 @@ export class AppComponent {
       }
       element.setAttribute(`${compDetails.tagName}${Object.values(compDetails.attributes)[0]}${stateName}`, true);
     }
+    
     if (compDetails.hasOwnProperty("groupName")) {
       if (compDetails.groupName === "switchGroup") {
         labelEle = document.createElement("label");
@@ -211,6 +212,9 @@ export class AppComponent {
     if (compDetails.hasOwnProperty("textContent")) {
       element.textContent = compDetails.textContent;
     }
+    if(stateName === "disabled"){
+      element.setAttribute("disabled",true);
+    } 
     this.divParentEle.appendChild(element);
   }
 
@@ -239,19 +243,6 @@ export class AppComponent {
     if (list.hasOwnProperty("options") && Object.keys(list.options).length) {
       list.options.forEach((prop: any) => {
         let divEle = this.getInputandLabelElement(prop, list,"default");
-
-        // if (list.hasOwnProperty("specific") && Object.keys(list.specific).length) {
-        //   Object.keys(list.specific).forEach(())
-        //     if (key === "default") {
-        //       this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]`, value);
-        //       this.generateStylesheetProperty(`${list.tagName}[id${prop.label}${key}=true]`,value);
-        //     }
-        //     else {
-        //       this.generateStylesheetProperty(`${list.tagName}[id=${prop.label}]:${key}`, value);
-        //       this.generateStylesheetProperty(`${list.tagName}[id${prop.label}${key}=true]`, value);
-        //     }
-          
-        // }
         divElement.appendChild(divEle);
       })
     }
@@ -272,9 +263,12 @@ export class AppComponent {
     if(stateName !== "default"){
       inputEle.classList.add(`${list.groupName}-default`, `${list.groupName}-${stateName}`);
       inputEle.setAttribute(`${list.tagName}${Object.values(list.attributes)[0]}${stateName}`, "true")
-      inputEle.setAttribute(`${list.tagName}${prop.label}${stateName}`, "true");
-      
+      inputEle.setAttribute(`${list.tagName}${prop.label}${stateName}`, "true");  
+      if(stateName === "disabled"){
+        inputEle.setAttribute("disabled","true");
+      }  
     }
+    
     divEle.appendChild(inputEle);
     if (prop.hasOwnProperty("label")) {
       let labEle = document.createElement("label");
